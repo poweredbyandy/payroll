@@ -45,6 +45,7 @@ class HrPayslip(models.Model):
 
     def action_payslip_done(self):
         res = super().action_payslip_done()
+        logger.info(f"Payslip done: {self.ids}")
 
         for slip in self:
             line_ids = []
@@ -54,6 +55,7 @@ class HrPayslip(models.Model):
             currency = (
                 slip.company_id.currency_id or slip.journal_id.company_id.currency_id
             )
+            slip._ensure_exchange_rate()
 
             name = _("Payslip of %s") % (slip.employee_id.name)
             move_dict = {
@@ -63,11 +65,23 @@ class HrPayslip(models.Model):
                 "date": date,
             }
             for line in slip.line_ids:
-                amount = currency.round(slip.credit_note and -line.total or line.total)
+                line_total = (
+                    line.total_company_currency
+                    if slip.is_multicurrency
+                    else line.total
+                )
+                amount = currency.round(
+                    slip.credit_note and -line_total or line_total
+                )
                 if currency.is_zero(amount):
                     continue
                 debit_account_id = line.salary_rule_id.account_debit.id
                 credit_account_id = line.salary_rule_id.account_credit.id
+                amount_currency = False
+                line_currency = False
+                if slip.is_multicurrency and slip.currency_id:
+                    amount_currency = slip.credit_note and -line.total or line.total
+                    line_currency = slip.currency_id.id
 
                 move_line_analytic_ids = {}
                 if slip.contract_id.analytic_account_id:
@@ -81,7 +95,13 @@ class HrPayslip(models.Model):
 
                 if debit_account_id:
                     debit_line = self._prepare_debit_line(
-                        line, amount, date, debit_account_id, move_line_analytic_ids
+                        line,
+                        amount,
+                        date,
+                        debit_account_id,
+                        move_line_analytic_ids,
+                        amount_currency=amount_currency,
+                        currency_id=line_currency,
                     )
                     line_ids.append((0, 0, debit_line))
                     debit_sum += debit_line["debit"] - debit_line["credit"]
@@ -93,6 +113,8 @@ class HrPayslip(models.Model):
                         date,
                         credit_account_id,
                         move_line_analytic_ids,
+                        amount_currency=amount_currency,
+                        currency_id=line_currency,
                     )
                     line_ids.append((0, 0, credit_line))
                     credit_sum += credit_line["credit"] - credit_line["debit"]
@@ -139,10 +161,17 @@ class HrPayslip(models.Model):
         return res
 
     def _prepare_debit_line(
-        self, line, amount, date, debit_account_id, move_line_analytic_ids
+        self,
+        line,
+        amount,
+        date,
+        debit_account_id,
+        move_line_analytic_ids,
+        amount_currency=False,
+        currency_id=False,
     ):
         tax_ids, tax_tag_ids, tax_repartition_line_id = self._get_tax_details(line)
-        return {
+        vals = {
             "name": line.name,
             "partner_id": line._get_partner_id(credit_account=False),
             "account_id": debit_account_id,
@@ -156,12 +185,25 @@ class HrPayslip(models.Model):
             "tax_repartition_line_id": tax_repartition_line_id,
             "tax_tag_ids": tax_tag_ids,
         }
+        if currency_id:
+            vals["currency_id"] = currency_id
+            vals["amount_currency"] = (
+                amount_currency if amount_currency is not False else amount
+            )
+        return vals
 
     def _prepare_credit_line(
-        self, line, amount, date, credit_account_id, move_line_analytic_ids
+        self,
+        line,
+        amount,
+        date,
+        credit_account_id,
+        move_line_analytic_ids,
+        amount_currency=False,
+        currency_id=False,
     ):
         tax_ids, tax_tag_ids, tax_repartition_line_id = self._get_tax_details(line)
-        return {
+        vals = {
             "name": line.name,
             "partner_id": line._get_partner_id(credit_account=True),
             "account_id": credit_account_id,
@@ -175,6 +217,11 @@ class HrPayslip(models.Model):
             "tax_repartition_line_id": tax_repartition_line_id,
             "tax_tag_ids": tax_tag_ids,
         }
+        if currency_id:
+            vals["currency_id"] = currency_id
+            signed = amount_currency if amount_currency is not False else amount
+            vals["amount_currency"] = -signed
+        return vals
 
     def _prepare_adjust_credit_line(
         self, currency, credit_sum, debit_sum, journal, date

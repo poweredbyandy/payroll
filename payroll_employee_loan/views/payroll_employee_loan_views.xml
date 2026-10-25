@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="payroll_employee_loan_view_tree" model="ir.ui.view">
+        <field name="name">payroll.employee.loan.list</field>
+        <field name="model">payroll.employee.loan</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="employee_id" />
+                <field name="amount" />
+                <field name="currency_id" />
+                <field name="remaining_amount" />
+                <field name="state" />
+            </list>
+        </field>
+    </record>
+    <record id="payroll_employee_loan_view_form" model="ir.ui.view">
+        <field name="name">payroll.employee.loan.form</field>
+        <field name="model">payroll.employee.loan</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_request" type="object" string="Request" invisible="state != 'draft'" class="oe_highlight" />
+                    <button name="action_dept_approve" type="object" string="Dept Approve" invisible="state != 'requested'" class="oe_highlight" />
+                    <button name="action_hr_approve" type="object" string="HR Approve" invisible="state != 'dept_approved'" class="oe_highlight" />
+                    <button name="action_disburse" type="object" string="Disburse" invisible="state != 'hr_approved'" class="oe_highlight" />
+                    <button name="action_done" type="object" string="Mark Done" invisible="state != 'disbursed'" />
+                    <button name="action_close" type="object" string="Close" invisible="state not in ('done', 'disbursed')" />
+                    <button name="action_reject" type="object" string="Reject" invisible="state not in ('requested', 'dept_approved')" />
+                    <button name="action_cancel" type="object" string="Cancel" invisible="state in ('closed', 'cancelled')" />
+                    <button name="action_reset_draft" type="object" string="Reset to Draft" invisible="state not in ('cancelled', 'rejected')" />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,requested,dept_approved,hr_approved,disbursed,done,closed" />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="action_open_disbursement_move"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-book"
+                            invisible="not move_id"
+                        >
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Disbursement</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1" /></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id" readonly="state != 'draft'" />
+                            <field name="department_id" />
+                            <field name="manager_id" readonly="state != 'draft'" />
+                            <field name="loan_type_id" readonly="state != 'draft'" />
+                            <field
+                                name="payment_method"
+                                string="Installment Deduction"
+                                readonly="state != 'draft'"
+                            />
+                        </group>
+                        <group>
+                            <field name="date" readonly="state != 'draft'" />
+                            <field name="date_start" readonly="state != 'draft'" />
+                            <field name="date_end" />
+                            <field name="term" readonly="state != 'draft'" />
+                            <field name="company_id" groups="base.group_multi_company" />
+                            <field name="currency_id" readonly="state != 'draft'" />
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="amount" readonly="state != 'draft'" />
+                            <field name="installment_amount" />
+                            <field name="paid_amount" />
+                            <field name="remaining_amount" />
+                        </group>
+                        <group>
+                            <field name="apply_interest" readonly="state != 'draft'" />
+                            <field name="interest_type" readonly="state != 'draft'" invisible="not apply_interest" />
+                            <field name="interest_rate" readonly="state != 'draft'" invisible="not apply_interest" />
+                            <field name="interest_amount" />
+                        </group>
+                    </group>
+                    <group string="Disbursement Accounting" invisible="not move_id">
+                        <group>
+                            <field name="journal_id" readonly="1" />
+                            <field name="available_payment_method_line_ids" invisible="1" />
+                            <field name="payment_method_line_id" readonly="1" />
+                            <field name="disbursement_account_id" readonly="1" />
+                        </group>
+                        <group>
+                            <field name="move_id" readonly="1" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Installments">
+                            <field name="installment_ids">
+                                <list editable="bottom">
+                                    <field name="name" />
+                                    <field name="date_due" />
+                                    <field name="principal_amount" />
+                                    <field name="interest_amount" />
+                                    <field name="amount" />
+                                    <field name="state" />
+                                    <field name="payslip_id" />
+                                    <field name="auto_add_to_payslip" />
+                                    <field name="currency_id" column_invisible="1" />
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Documents">
+                            <field name="document_ids">
+                                <list editable="bottom">
+                                    <field name="name" />
+                                    <field name="attachment" filename="filename" />
+                                    <field name="filename" column_invisible="1" />
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Notes">
+                            <field name="notes" />
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+    <record id="payroll_employee_loan_action" model="ir.actions.act_window">
+        <field name="name">Employee Loans</field>
+        <field name="res_model">payroll.employee.loan</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

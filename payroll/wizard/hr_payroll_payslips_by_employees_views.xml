@@ -5,12 +5,34 @@
         <field name="model">hr.payslip.employees</field>
         <field name="arch" type="xml">
             <form string="Payslips by Employees">
+                <header>
+                    <button
+                        icon="fa-cogs"
+                        string="Generate"
+                        name="compute_sheet"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="not employee_ids"
+                    />
+                    <button
+                        icon="fa-cogs"
+                        string="Generate"
+                        name="compute_sheet"
+                        type="object"
+                        class="oe_highlight disabled"
+                        invisible="employee_ids"
+                    />
+                </header>
+                <div class="alert alert-info" role="alert" invisible="employee_ids">
+                    No employees with an open contract were found for this batch
+                    period (and structure, if set). Add or adjust contracts, then
+                    reopen this wizard.
+                </div>
                 <group>
                     <span colspan="4" nolabel="1">
-                        This wizard will generate payslips for all selected employee(s)
-                        based on the dates and credit note
-                        specified
-                        on Payslips Run.
+                        Employees with an open contract overlapping the batch dates
+                        are selected automatically. Uncheck those you want to skip,
+                        then click Generate.
                     </span>
                 </group>
                 <group colspan="4">
@@ -26,6 +48,15 @@
                         name="compute_sheet"
                         type="object"
                         class="oe_highlight"
+                        invisible="not employee_ids"
+                    />
+                    <button
+                        icon="fa-cogs"
+                        string="Generate"
+                        name="compute_sheet"
+                        type="object"
+                        class="oe_highlight disabled"
+                        invisible="employee_ids"
                     />
                     <button string="Cancel" class="oe_link" special="cancel" />
                 </footer>

@@ -156,3 +156,14 @@ msgid ""
 msgstr ""
 "¡La cuenta deudora del diario de gastos \"%s\" no se ha configurado "
 "correctamente!"
+
+#. module: payroll_account
+#: model:ir.model.fields,field_description:payroll_account.manual
+msgid "Accounting Partner"
+msgstr "Tercero contable"
+
+#. module: payroll_account
+#: model:ir.model.fields,field_description:payroll_account.manual
+msgid "Optional partner for journal items generated from this rule. Falls back to the contribution register partner when empty."
+msgstr "Contacto opcional para los apuntes generados por esta regla. Si está vacío, se usa el contacto del registro de contribución."
+

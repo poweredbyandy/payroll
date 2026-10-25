@@ -42,6 +42,18 @@ class HrPayslipLine(models.Model):
         store=True,
         currency_field="currency_id",
     )
+    company_currency_id = fields.Many2one(
+        related="slip_id.company_currency_id",
+        string="Company Currency",
+        store=True,
+        readonly=True,
+    )
+    total_company_currency = fields.Monetary(
+        string="Total (Company Currency)",
+        compute="_compute_total_company_currency",
+        store=True,
+        currency_field="company_currency_id",
+    )
     allow_edit_payslip_lines = fields.Boolean(
         "Allow editing", compute="_compute_allow_edit_payslip_lines"
     )
@@ -78,6 +90,15 @@ class HrPayslipLine(models.Model):
     def _compute_total(self):
         for line in self:
             line.total = float(line.quantity) * line.amount * line.rate / 100
+
+    @api.depends("total", "slip_id.exchange_rate", "company_currency_id")
+    def _compute_total_company_currency(self):
+        for line in self:
+            rate = line.slip_id.exchange_rate or 1.0
+            amount = line.total * rate
+            if line.company_currency_id:
+                amount = line.company_currency_id.round(amount)
+            line.total_company_currency = amount
 
     @api.model_create_multi
     def create(self, vals_list):

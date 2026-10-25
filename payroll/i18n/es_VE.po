@@ -931,7 +931,7 @@ msgstr "Creado el"
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__credit_note
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__credit_note
 msgid "Credit Note"
-msgstr "Factura rectificativa"
+msgstr "Nómina de abono"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_line__currency_id
@@ -1347,7 +1347,7 @@ msgstr ""
 #. module: payroll
 #: model:ir.model.fields,help:payroll.field_hr_payslip__credit_note
 msgid "Indicates this payslip has a refund of another"
-msgstr "Indica que esta nómina incluye una factura rectificativa de otra"
+msgstr "Indica que esta nómina es un abono/anulación de otra"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_line__input_ids
@@ -1991,29 +1991,29 @@ msgstr "Refrescar datos externos"
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_form
 msgid "Refund"
-msgstr "Factura rectificativa"
+msgstr "Anular nómina"
 
 #. module: payroll
 #. odoo-python
 #: code:addons/payroll/models/hr_payslip.py:0
 msgid "Refund Payslip"
-msgstr "Reembolsar liquidación"
+msgstr "Nómina de abono"
 
 #. module: payroll
 #. odoo-python
 #: code:addons/payroll/models/hr_payslip.py:0
 msgid "Refund: %s"
-msgstr "Reembolso: %s"
+msgstr "Abono: %s"
 
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_search
 msgid "Refunded"
-msgstr "Reembolsado"
+msgstr "Abonada"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__refunded_id
 msgid "Refunded Payslip"
-msgstr "Nómina reembolsada"
+msgstr "Nómina de abono"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_contribution_register__register_line_ids
@@ -2504,3 +2504,69 @@ msgstr "total_net"
 
 #~ msgid "Time Off Type"
 #~ msgstr "Tipo de Tiempo Libre"
+
+#. module: payroll
+#: model:ir.model.fields,field_description:payroll.manual
+msgid "Contract Currency"
+msgstr "Moneda del contrato"
+
+#. module: payroll
+#: model:ir.model.fields,field_description:payroll.manual
+msgid "Company Currency"
+msgstr "Moneda de la compañía"
+
+#. module: payroll
+#: model:ir.model.fields,field_description:payroll.manual
+msgid "Exchange Rate"
+msgstr "Tasa de cambio"
+
+#. module: payroll
+#: model:ir.model.fields,field_description:payroll.manual
+msgid "Total (Company Currency)"
+msgstr "Total (moneda compañía)"
+
+#. module: payroll
+#: model:ir.model.fields,field_description:payroll.manual
+msgid "Is Multicurrency"
+msgstr "Es multimoneda"
+
+#. module: payroll
+#: model:ir.model.fields,field_description:payroll.manual
+msgid "Company currency units per 1 unit of contract currency. Used when the contract currency differs from the company currency."
+msgstr "Unidades de moneda de la compañía por 1 unidad de moneda del contrato. Se usa cuando la moneda del contrato difiere de la de la compañía."
+
+#. module: payroll
+#: model:ir.model.fields,field_description:payroll.manual
+msgid "Optional batch exchange rate (company currency units per 1 unit of contract currency). Propagated to payslips when set."
+msgstr "Tasa de cambio opcional del lote (unidades de moneda de la compañía por 1 unidad de moneda del contrato). Se propaga a los recibos cuando está definida."
+
+#. module: payroll
+#: model:ir.model.fields,field_description:payroll.manual
+msgid "Currency of the wage. May differ from the company currency; payslips convert to company currency using the exchange rate."
+msgstr "Moneda del salario. Puede diferir de la moneda de la compañía; los recibos convierten a la moneda de la compañía usando la tasa de cambio."
+
+#. module: payroll
+#: model:ir.model.fields,field_description:payroll.manual
+msgid "Missing exchange rate from %(from_cur)s to %(to_cur)s on %(date)s for company %(company)s. Please set a currency rate before computing the payslip."
+msgstr "Falta la tasa de cambio de %(from_cur)s a %(to_cur)s el %(date)s para la compañía %(company)s. Configure una tasa de moneda antes de calcular el recibo."
+
+#. module: payroll
+#: model:ir.model.fields,field_description:payroll.manual
+msgid "Accounting Partner"
+msgstr "Tercero contable"
+
+#. module: payroll
+#: model:ir.model.fields,field_description:payroll.manual
+msgid "Optional partner for journal items generated from this rule. Falls back to the contribution register partner when empty."
+msgstr "Contacto opcional para los apuntes generados por esta regla. Si está vacío, se usa el contacto del registro de contribución."
+
+#. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_form
+msgid "Original Payslip"
+msgstr "Nómina original"
+
+#. module: payroll
+#: model:ir.model.fields,field_description:payroll.field_hr_payslip__refund_origin_ids
+msgid "Original Payslips"
+msgstr "Nóminas originales"
+

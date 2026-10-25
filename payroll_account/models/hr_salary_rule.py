@@ -23,3 +23,9 @@ class HrSalaryRule(models.Model):
     )
     tax_base_id = fields.Many2one("hr.salary.rule", "Base")
     tax_line_ids = fields.One2many("hr.salary.rule", "tax_base_id", string="Tax lines")
+    partner_id = fields.Many2one(
+        "res.partner",
+        string="Accounting Partner",
+        help="Optional partner for journal items generated from this rule. "
+        "Falls back to the contribution register partner when empty.",
+    )

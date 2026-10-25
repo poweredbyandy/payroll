@@ -34,6 +34,12 @@ class HrPayslipRun(models.Model):
         copy=False,
         default=lambda self: self.env.company,
     )
+    exchange_rate = fields.Float(
+        string="Exchange Rate",
+        digits=(16, 6),
+        help="Optional batch exchange rate (company currency units per 1 unit of "
+        "contract currency). Propagated to payslips when set.",
+    )
     date_start = fields.Date(
         string="Date From",
         required=True,

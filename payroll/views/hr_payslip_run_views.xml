@@ -152,6 +152,11 @@
                         <group name="other">
                             <field name="struct_id" readonly="state != 'draft'" />
                             <field name="credit_note" readonly="state != 'draft'" />
+                            <field
+                                name="exchange_rate"
+                                readonly="state != 'draft'"
+                                groups="base.group_multi_currency"
+                            />
                         </group>
                     </group>
                     <separator string="Payslips" />

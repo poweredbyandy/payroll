@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem
+        id="menu_payroll_employee_loan_root"
+        name="Loans"
+        parent="payroll.payroll_menu_root"
+        sequence="45"
+        groups="payroll_employee_loan.group_payroll_loan_user"
+    />
+    <menuitem
+        id="menu_payroll_employee_loan"
+        name="Employee Loans"
+        parent="menu_payroll_employee_loan_root"
+        action="payroll_employee_loan_action"
+        sequence="10"
+    />
+    <menuitem
+        id="menu_payroll_employee_loan_type"
+        name="Loan Types"
+        parent="menu_payroll_employee_loan_root"
+        action="payroll_employee_loan_type_action"
+        sequence="20"
+        groups="payroll_employee_loan.group_payroll_loan_manager"
+    />
+</odoo>

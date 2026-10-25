@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="hr_payslip_view_form_loan" model="ir.ui.view">
+        <field name="name">hr.payslip.form.loan</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="payroll.hr_payslip_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='accounting']" position="after">
+                <page string="Loans" name="loans">
+                    <field name="loan_installment_ids" readonly="1">
+                        <list>
+                            <field name="loan_id" />
+                            <field name="name" />
+                            <field name="date_due" />
+                            <field name="amount" />
+                            <field name="state" />
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -31,6 +31,27 @@ class HrContract(models.Model):
     resource_calendar_id = fields.Many2one(
         required=True, help="Employee's working schedule."
     )
+    currency_id = fields.Many2one(
+        "res.currency",
+        string="Currency",
+        related=False,
+        readonly=False,
+        store=True,
+        required=True,
+        default=lambda self: self.env.company.currency_id.id,
+        help="Currency of the wage. May differ from the company currency; "
+        "payslips convert to company currency using the exchange rate.",
+    )
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if not vals.get("currency_id"):
+                company = self.env["res.company"].browse(
+                    vals.get("company_id") or self.env.company.id
+                )
+                vals["currency_id"] = company.currency_id.id
+        return super().create(vals_list)
 
     def get_all_structures(self):
         """

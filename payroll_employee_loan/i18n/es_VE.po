@@ -1,0 +1,629 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* payroll_employee_loan
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-24 23:39+0000\n"
+"PO-Revision-Date: 2026-10-24 23:39+0000\n"
+"Last-Translator: andyengit <anderson.armeya@gmail.com>\n"
+"Language-Team: Spanish (VE)\n"
+"Language: es_VE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__move_id
+msgid "Accounting Entry"
+msgstr "Asiento contable"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__message_needaction
+msgid "Action Needed"
+msgstr "Acción requerida"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_type__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decoración de excepción de actividad"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__activity_state
+msgid "Activity State"
+msgstr "Estado de la actividad"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icono del tipo de actividad"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__amount
+msgid "Amount"
+msgstr "Monto"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__apply_interest
+msgid "Apply Interest"
+msgstr "Aplicar interés"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_document__attachment
+msgid "Attachment"
+msgstr "Adjunto"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__message_attachment_count
+msgid "Attachment Count"
+msgstr "Nº de adjuntos"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_installment__auto_add_to_payslip
+msgid "Auto Add To Payslip"
+msgstr "Agregar automáticamente al recibo"
+
+#. module: payroll_employee_loan
+#: model_terms:ir.ui.view,arch_db:payroll_employee_loan.payroll_employee_loan_view_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields.selection,name:payroll_employee_loan.selection__payroll_employee_loan__state__cancelled
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: payroll_employee_loan
+#. odoo-python
+#: code:addons/payroll_employee_loan/models/payroll_employee_loan.py:0
+msgid "Cannot close loan %s while remaining amount is positive."
+msgstr "No se puede cerrar el préstamo %s mientras el monto restante sea positivo."
+
+#. module: payroll_employee_loan
+#: model_terms:ir.ui.view,arch_db:payroll_employee_loan.payroll_employee_loan_view_form
+msgid "Close"
+msgstr "Cerrar"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields.selection,name:payroll_employee_loan.selection__payroll_employee_loan__state__closed
+msgid "Closed"
+msgstr "Cerrado"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__company_id
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_installment__company_id
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_type__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__create_uid
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_document__create_uid
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_installment__create_uid
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_type__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__create_date
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_document__create_date
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_installment__create_date
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_type__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__currency_id
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_installment__currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_installment__date_due
+msgid "Date Due"
+msgstr "Fecha de vencimiento"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__date_end
+msgid "Date End"
+msgstr "Fecha fin"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_type__loan_term
+msgid "Default Term"
+msgstr "Plazo predeterminado"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__department_id
+msgid "Department"
+msgstr "Departamento"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields.selection,name:payroll_employee_loan.selection__payroll_employee_loan__state__dept_approved
+msgid "Department Approved"
+msgstr "Aprobado por departamento"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__manager_id
+msgid "Department Manager"
+msgstr "Jefe de departamento"
+
+#. module: payroll_employee_loan
+#: model_terms:ir.ui.view,arch_db:payroll_employee_loan.payroll_employee_loan_view_form
+msgid "Dept Approve"
+msgstr "Aprobar dpto."
+
+#. module: payroll_employee_loan
+#: model_terms:ir.ui.view,arch_db:payroll_employee_loan.payroll_employee_loan_view_form
+msgid "Disburse"
+msgstr "Desembolsar"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields.selection,name:payroll_employee_loan.selection__payroll_employee_loan__state__disbursed
+msgid "Disbursed"
+msgstr "Desembolsado"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__display_name
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_document__display_name
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_installment__display_name
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_type__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__document_ids
+#: model_terms:ir.ui.view,arch_db:payroll_employee_loan.payroll_employee_loan_view_form
+msgid "Documents"
+msgstr "Documentos"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields.selection,name:payroll_employee_loan.selection__payroll_employee_loan__state__done
+msgid "Done"
+msgstr "Hecho"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields.selection,name:payroll_employee_loan.selection__payroll_employee_loan__state__draft
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__employee_id
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: payroll_employee_loan
+#: model:ir.model,name:payroll_employee_loan.model_payroll_employee_loan
+msgid "Employee Loan"
+msgstr "Préstamo de empleado"
+
+#. module: payroll_employee_loan
+#: model:ir.model,name:payroll_employee_loan.model_payroll_employee_loan_document
+msgid "Employee Loan Document"
+msgstr "Documento de préstamo"
+
+#. module: payroll_employee_loan
+#: model:ir.model,name:payroll_employee_loan.model_payroll_employee_loan_installment
+msgid "Employee Loan Installment"
+msgstr "Cuota de préstamo"
+
+#. module: payroll_employee_loan
+#: model:ir.model,name:payroll_employee_loan.model_payroll_employee_loan_type
+msgid "Employee Loan Type"
+msgstr "Tipo de préstamo de empleado"
+
+#. module: payroll_employee_loan
+#: model:ir.actions.act_window,name:payroll_employee_loan.payroll_employee_loan_action
+#: model:ir.module.category,name:payroll_employee_loan.module_category_payroll_loan
+#: model:ir.ui.menu,name:payroll_employee_loan.menu_payroll_employee_loan
+msgid "Employee Loans"
+msgstr "Préstamos de empleados"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_document__filename
+msgid "Filename"
+msgstr "Nombre de archivo"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (contactos)"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,help:payroll_employee_loan.field_payroll_employee_loan__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icono Font Awesome, p. ej. fa-tasks"
+
+#. module: payroll_employee_loan
+#: model_terms:ir.ui.view,arch_db:payroll_employee_loan.payroll_employee_loan_view_form
+msgid "HR Approve"
+msgstr "Aprobar RRHH"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields.selection,name:payroll_employee_loan.selection__payroll_employee_loan__state__hr_approved
+msgid "HR Approved"
+msgstr "Aprobado por RRHH"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__has_message
+msgid "Has Message"
+msgstr "Tiene mensaje"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__id
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_document__id
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_installment__id
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_type__id
+msgid "ID"
+msgstr "ID"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__activity_exception_icon
+msgid "Icon"
+msgstr "Icono"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,help:payroll_employee_loan.field_payroll_employee_loan__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icono para indicar una actividad de excepción."
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,help:payroll_employee_loan.field_payroll_employee_loan__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, los mensajes nuevos requieren su atención."
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,help:payroll_employee_loan.field_payroll_employee_loan__message_has_error
+#: model:ir.model.fields,help:payroll_employee_loan.field_payroll_employee_loan__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcado, algunos mensajes tienen error de entrega."
+
+#. module: payroll_employee_loan
+#. odoo-python
+#: code:addons/payroll_employee_loan/models/payroll_employee_loan.py:0
+msgid "Installment %s"
+msgstr "Cuota %s"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__installment_amount
+msgid "Installment Amount"
+msgstr "Monto de cuota"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__installment_count
+msgid "Installment Count"
+msgstr "Nº de cuotas"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__installment_ids
+#: model_terms:ir.ui.view,arch_db:payroll_employee_loan.payroll_employee_loan_view_form
+msgid "Installments"
+msgstr "Cuotas"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__interest_amount
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_installment__interest_amount
+msgid "Interest Amount"
+msgstr "Monto de intereses"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__interest_rate
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_type__interest_rate
+msgid "Interest Rate (%)"
+msgstr "Tasa de interés (%)"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__interest_type
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_type__interest_type
+msgid "Interest Type"
+msgstr "Tipo de interés"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__message_is_follower
+msgid "Is Follower"
+msgstr "Es seguidor"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__job_id
+msgid "Job Position"
+msgstr "Puesto de trabajo"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__write_uid
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_document__write_uid
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_installment__write_uid
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_type__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__write_date
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_document__write_date
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_installment__write_date
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_type__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields.selection,name:payroll_employee_loan.selection__payroll_employee_loan__interest_type__linear
+#: model:ir.model.fields.selection,name:payroll_employee_loan.selection__payroll_employee_loan_type__interest_type__linear
+msgid "Linear"
+msgstr "Lineal"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_document__loan_id
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_installment__loan_id
+msgid "Loan"
+msgstr "Préstamo"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_hr_payslip__loan_installment_ids
+msgid "Loan Installments"
+msgstr "Cuotas de préstamo"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__loan_type_id
+msgid "Loan Type"
+msgstr "Tipo de préstamo"
+
+#. module: payroll_employee_loan
+#: model:ir.actions.act_window,name:payroll_employee_loan.payroll_employee_loan_type_action
+#: model:ir.ui.menu,name:payroll_employee_loan.menu_payroll_employee_loan_type
+msgid "Loan Types"
+msgstr "Tipos de préstamo"
+
+#. module: payroll_employee_loan
+#. odoo-python
+#: code:addons/payroll_employee_loan/models/payroll_employee_loan.py:0
+msgid "Loan term must be positive."
+msgstr "El plazo del préstamo debe ser positivo."
+
+#. module: payroll_employee_loan
+#: model:ir.ui.menu,name:payroll_employee_loan.menu_payroll_employee_loan_root
+#: model_terms:ir.ui.view,arch_db:payroll_employee_loan.hr_payslip_view_form_loan
+msgid "Loans"
+msgstr "Préstamos"
+
+#. module: payroll_employee_loan
+#: model:res.groups,name:payroll_employee_loan.group_payroll_loan_manager
+msgid "Manager"
+msgstr "Administrador"
+
+#. module: payroll_employee_loan
+#: model_terms:ir.ui.view,arch_db:payroll_employee_loan.payroll_employee_loan_view_form
+msgid "Mark Done"
+msgstr "Marcar como hecho"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de entrega del mensaje"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Fecha límite de mi actividad"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__name
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_document__name
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_installment__name
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_type__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "Próximo evento del calendario"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Fecha límite de la próxima actividad"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de la próxima actividad"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipo de la próxima actividad"
+
+#. module: payroll_employee_loan
+#: model_terms:ir.ui.view,arch_db:payroll_employee_loan.payroll_employee_loan_view_form
+msgid "Notes"
+msgstr "Notas"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Nº de acciones"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__term
+msgid "Number of Installments"
+msgstr "Número de cuotas"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__message_has_error_counter
+msgid "Number of errors"
+msgstr "Nº de errores"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,help:payroll_employee_loan.field_payroll_employee_loan__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Nº de mensajes que requieren acción"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,help:payroll_employee_loan.field_payroll_employee_loan__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Nº de mensajes con error de entrega"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields.selection,name:payroll_employee_loan.selection__payroll_employee_loan_installment__state__paid
+msgid "Paid"
+msgstr "Pagado"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__paid_amount
+msgid "Paid Amount"
+msgstr "Monto pagado"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__payment_method
+msgid "Payment Method"
+msgstr "Método de pago"
+
+#. module: payroll_employee_loan
+#: model:ir.model,name:payroll_employee_loan.model_hr_payslip
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_installment__payslip_id
+#: model:ir.model.fields.selection,name:payroll_employee_loan.selection__payroll_employee_loan__payment_method__payslip
+msgid "Payslip"
+msgstr "Recibo de nómina"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields.selection,name:payroll_employee_loan.selection__payroll_employee_loan_installment__state__pending
+msgid "Pending"
+msgstr "Pendiente"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_installment__principal_amount
+msgid "Principal Amount"
+msgstr "Monto de capital"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__notes
+msgid "Reason"
+msgstr "Motivo"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields.selection,name:payroll_employee_loan.selection__payroll_employee_loan__interest_type__reduce
+#: model:ir.model.fields.selection,name:payroll_employee_loan.selection__payroll_employee_loan_type__interest_type__reduce
+msgid "Reducing"
+msgstr "Reducido"
+
+#. module: payroll_employee_loan
+#: model_terms:ir.ui.view,arch_db:payroll_employee_loan.payroll_employee_loan_view_form
+msgid "Reject"
+msgstr "Rechazar"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields.selection,name:payroll_employee_loan.selection__payroll_employee_loan__state__rejected
+msgid "Rejected"
+msgstr "Rechazado"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__remaining_amount
+msgid "Remaining Amount"
+msgstr "Monto restante"
+
+#. module: payroll_employee_loan
+#: model_terms:ir.ui.view,arch_db:payroll_employee_loan.payroll_employee_loan_view_form
+msgid "Request"
+msgstr "Solicitar"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields.selection,name:payroll_employee_loan.selection__payroll_employee_loan__state__requested
+msgid "Requested"
+msgstr "Solicitado"
+
+#. module: payroll_employee_loan
+#: model_terms:ir.ui.view,arch_db:payroll_employee_loan.payroll_employee_loan_view_form
+msgid "Reset to Draft"
+msgstr "Restablecer a borrador"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario responsable"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de entrega SMS"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields.selection,name:payroll_employee_loan.selection__payroll_employee_loan_installment__state__skipped
+msgid "Skipped"
+msgstr "Omitido"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__date_start
+msgid "Start Date"
+msgstr "Fecha de inicio"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__state
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_installment__state
+msgid "State"
+msgstr "Estado"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,help:payroll_employee_loan.field_payroll_employee_loan__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Estado según actividades\n"
+"Atrasada: la fecha ya pasó\n"
+"Hoy: la actividad es hoy\n"
+"Planificada: actividades futuras."
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan_installment__amount
+msgid "Total"
+msgstr "Total"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,help:payroll_employee_loan.field_payroll_employee_loan__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo de la actividad de excepción en el registro."
+
+#. module: payroll_employee_loan
+#: model:res.groups,name:payroll_employee_loan.group_payroll_loan_user
+msgid "User"
+msgstr "Usuario"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,field_description:payroll_employee_loan.field_payroll_employee_loan__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: payroll_employee_loan
+#: model:ir.model.fields,help:payroll_employee_loan.field_payroll_employee_loan__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+

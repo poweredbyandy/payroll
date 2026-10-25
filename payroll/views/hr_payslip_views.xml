@@ -86,8 +86,8 @@
                     <button
                         string="Refund"
                         name="refund_sheet"
-                        invisible="state != 'done'"
-                        type='object'
+                        invisible="state != 'done' or credit_note or refunded_id"
+                        type="object"
                     />
                     <button
                         string="Compute Sheet"
@@ -128,6 +128,28 @@
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
+                        <button
+                            name="action_open_refunded_payslip"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-undo"
+                            invisible="not refunded_id"
+                        >
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Refund Payslip</span>
+                            </div>
+                        </button>
+                        <button
+                            name="action_open_original_payslip"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-file-text-o"
+                            invisible="not refund_origin_ids"
+                        >
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Original Payslip</span>
+                            </div>
+                        </button>
                         <button
                             name="%(hr_payslip_line_action_computation_details)d"
                             class="oe_stat_button"
@@ -176,8 +198,9 @@
                             />
                         </group>
                         <group name="right">
-                            <field name="credit_note" readonly="state != 'draft'" />
-                            <field name="refunded_id" invisible="not refunded_id" />
+                            <field name="credit_note" readonly="1" />
+                            <field name="refunded_id" invisible="1" />
+                            <field name="refund_origin_ids" invisible="1" />
                             <field name="compute_date" invisible="not compute_date" />
                         </group>
                     </group>
@@ -289,7 +312,27 @@
                                         decoration-success="total > 0 and parent_rule_id == False"
                                         readonly="1"
                                     />
-                                    <field name="currency_id" invisible="1" />
+                                    <field
+                                        name="currency_id"
+                                        string="Currency"
+                                        optional="show"
+                                        readonly="1"
+                                        options="{'no_open': True}"
+                                    />
+                                    <field
+                                        name="total_company_currency"
+                                        optional="show"
+                                        readonly="1"
+                                        invisible="not parent.is_multicurrency"
+                                    />
+                                    <field
+                                        name="company_currency_id"
+                                        string="Company Currency"
+                                        optional="show"
+                                        readonly="1"
+                                        options="{'no_open': True}"
+                                        invisible="not parent.is_multicurrency"
+                                    />
                                 </list>
                             </field>
                         </page>
@@ -309,6 +352,14 @@
                                 </group>
                                 <group name="accounting" string="Accounting">
                                     <field name="paid" readonly="1" />
+                                    <field name="currency_id" readonly="1" />
+                                    <field name="company_currency_id" invisible="1" />
+                                    <field
+                                        name="exchange_rate"
+                                        readonly="state != 'draft'"
+                                        invisible="not is_multicurrency"
+                                    />
+                                    <field name="is_multicurrency" invisible="1" />
                                 </group>
                             </group>
                             <div colspan="4">

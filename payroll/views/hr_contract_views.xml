@@ -9,7 +9,11 @@
                 <field name="schedule_pay" />
                 <field name="struct_id" required="1" />
                 <field name="company_id" groups="base.group_multi_company" />
-                <field name="currency_id" invisible="1" />
+                <field
+                    name="currency_id"
+                    groups="base.group_multi_currency"
+                    options="{'no_create': True}"
+                />
             </xpath>
         </field>
     </record>

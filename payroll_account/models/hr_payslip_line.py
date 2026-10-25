@@ -29,7 +29,13 @@ class HrPayslipLine(models.Model):
         For other account types (expense, income, asset_current, etc.), no partner
         is assigned as these represent internal accounting entries without external
         party relationships.
+
+        If the salary rule has an accounting partner set, it takes precedence.
         """
+        rule_partner = self.salary_rule_id.partner_id
+        if rule_partner:
+            return rule_partner.id
+
         # Determine which account we're dealing with
         acc_type = (
             self.salary_rule_id.account_credit.account_type

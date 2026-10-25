@@ -150,12 +150,146 @@ class HrPayslip(models.Model):
     refunded_id = fields.Many2one(
         "hr.payslip", string="Refunded Payslip", readonly=True
     )
+    refund_origin_ids = fields.One2many(
+        "hr.payslip",
+        "refunded_id",
+        string="Original Payslips",
+    )
     allow_cancel_payslips = fields.Boolean(
         "Allow Canceling Payslips", compute="_compute_allow_cancel_payslips"
     )
     prevent_compute_on_confirm = fields.Boolean(
         "Prevent Compute on Confirm", compute="_compute_prevent_compute_on_confirm"
     )
+    currency_id = fields.Many2one(
+        "res.currency",
+        string="Contract Currency",
+        related="contract_id.currency_id",
+        store=True,
+        readonly=True,
+    )
+    company_currency_id = fields.Many2one(
+        related="company_id.currency_id",
+        string="Company Currency",
+        readonly=True,
+    )
+    exchange_rate = fields.Float(
+        string="Exchange Rate",
+        digits=(16, 6),
+        tracking=True,
+        help="Company currency units per 1 unit of contract currency. "
+        "Used when the contract currency differs from the company currency.",
+    )
+    is_multicurrency = fields.Boolean(
+        compute="_compute_is_multicurrency",
+        store=True,
+    )
+
+    @api.depends("currency_id", "company_currency_id")
+    def _compute_is_multicurrency(self):
+        for payslip in self:
+            payslip.is_multicurrency = bool(
+                payslip.currency_id
+                and payslip.company_currency_id
+                and payslip.currency_id != payslip.company_currency_id
+            )
+
+    def _get_exchange_rate_date(self):
+        self.ensure_one()
+        return self.date_to or fields.Date.context_today(self)
+
+    def _has_currency_rate(self, from_currency, to_currency, date):
+        """Return True if a conversion rate can be resolved for the date."""
+        self.ensure_one()
+        if from_currency == to_currency:
+            return True
+        Rate = self.env["res.currency.rate"]
+        company = self.company_id
+        rate = Rate.search(
+            [
+                ("currency_id", "=", from_currency.id),
+                ("name", "<=", date),
+                "|",
+                ("company_id", "=", company.id),
+                ("company_id", "=", False),
+            ],
+            order="company_id desc, name desc",
+            limit=1,
+        )
+        return bool(rate)
+
+    def _get_default_exchange_rate(self):
+        """Company currency units for 1 unit of contract currency."""
+        self.ensure_one()
+        company_currency = self.company_id.currency_id
+        contract_currency = self.contract_id.currency_id or company_currency
+        if contract_currency == company_currency:
+            return 1.0
+        date = self._get_exchange_rate_date()
+        return contract_currency._convert(
+            1.0, company_currency, self.company_id, date, round=False
+        )
+
+    def _ensure_exchange_rate(self):
+        """Set exchange_rate when empty; raise if foreign currency lacks a rate."""
+        for payslip in self:
+            company_currency = payslip.company_id.currency_id
+            contract_currency = (
+                payslip.contract_id.currency_id or company_currency
+            )
+            if contract_currency == company_currency:
+                if not payslip.exchange_rate:
+                    payslip.exchange_rate = 1.0
+                continue
+            if payslip.exchange_rate:
+                continue
+            date = payslip._get_exchange_rate_date()
+            if not payslip._has_currency_rate(
+                contract_currency, company_currency, date
+            ):
+                raise UserError(
+                    _(
+                        "Missing exchange rate from %(from_cur)s to %(to_cur)s "
+                        "on %(date)s for company %(company)s. "
+                        "Please set a currency rate before computing the payslip."
+                    )
+                    % {
+                        "from_cur": contract_currency.name,
+                        "to_cur": company_currency.name,
+                        "date": date,
+                        "company": payslip.company_id.display_name,
+                    }
+                )
+            payslip.exchange_rate = payslip._get_default_exchange_rate()
+
+    def _convert_to_company_currency(self, amount):
+        self.ensure_one()
+        rate = self.exchange_rate or 1.0
+        company_currency = self.company_id.currency_id
+        return company_currency.round(amount * rate)
+
+    @api.onchange("contract_id", "date_from", "date_to", "payslip_run_id")
+    def _onchange_exchange_rate(self):
+        for payslip in self:
+            if (
+                payslip.payslip_run_id
+                and payslip.payslip_run_id.exchange_rate
+                and payslip.is_multicurrency
+            ):
+                payslip.exchange_rate = payslip.payslip_run_id.exchange_rate
+            elif payslip.contract_id:
+                company_currency = payslip.company_id.currency_id
+                contract_currency = (
+                    payslip.contract_id.currency_id or company_currency
+                )
+                if contract_currency == company_currency:
+                    payslip.exchange_rate = 1.0
+                elif payslip._has_currency_rate(
+                    contract_currency,
+                    company_currency,
+                    payslip._get_exchange_rate_date(),
+                ):
+                    payslip.exchange_rate = payslip._get_default_exchange_rate()
 
     def _compute_allow_cancel_payslips(self):
         self.allow_cancel_payslips = (
@@ -226,9 +360,44 @@ class HrPayslip(models.Model):
                     raise UserError(_("Cannot cancel a payslip that is done."))
         return self.write({"state": "cancel"})
 
+    def action_open_refunded_payslip(self):
+        self.ensure_one()
+        if not self.refunded_id:
+            raise UserError(_("This payslip has no refund payslip."))
+        return {
+            "name": _("Refund Payslip"),
+            "type": "ir.actions.act_window",
+            "res_model": "hr.payslip",
+            "res_id": self.refunded_id.id,
+            "view_mode": "form",
+            "target": "current",
+        }
+
+    def action_open_original_payslip(self):
+        self.ensure_one()
+        origin = self.refund_origin_ids[:1]
+        if not origin:
+            raise UserError(_("This payslip has no original payslip."))
+        return {
+            "name": _("Original Payslip"),
+            "type": "ir.actions.act_window",
+            "res_model": "hr.payslip",
+            "res_id": origin.id,
+            "view_mode": "form",
+            "target": "current",
+        }
+
     def refund_sheet(self):
         copied_payslips = self.env["hr.payslip"]
         for payslip in self:
+            if payslip.credit_note:
+                raise UserError(
+                    _("A refund payslip cannot be refunded again.")
+                )
+            if payslip.refunded_id:
+                raise UserError(
+                    _("Payslip %s already has a refund.") % payslip.name
+                )
             # Create a refund slip
             copied_payslip = payslip.copy(
                 {"credit_note": True, "name": _("Refund: %s") % payslip.name}
@@ -275,6 +444,7 @@ class HrPayslip(models.Model):
         return super().unlink()
 
     def compute_sheet(self):
+        self._ensure_exchange_rate()
         for payslip in self:
             # delete old payslip lines
             payslip.line_ids.unlink()
