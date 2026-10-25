@@ -627,3 +627,43 @@ msgstr "Mensajes del sitio web"
 msgid "Website communication history"
 msgstr "Historial de comunicación del sitio web"
 
+#. module: auto
+msgid "Disburse Loan"
+msgstr "Desembolsar préstamo"
+
+#. module: auto
+msgid "Installment Deduction"
+msgstr "Descuento de cuota"
+
+#. module: auto
+msgid "Disbursement Accounting"
+msgstr "Contabilidad del desembolso"
+
+#. module: auto
+msgid "General"
+msgstr "General"
+
+#. module: auto
+msgid "Amount in Company Currency"
+msgstr "Monto en moneda de la compañía"
+
+#. module: auto
+msgid "Disbursement Date"
+msgstr "Fecha de desembolso"
+
+#. module: auto
+msgid "Disbursement Entry"
+msgstr "Asiento de desembolso"
+
+#. module: auto
+msgid "Disbursement Journal"
+msgstr "Diario de desembolso"
+
+#. module: auto
+msgid "Journal"
+msgstr "Diario"
+
+#. module: auto
+msgid "Loan Receivable Account"
+msgstr "Cuenta por cobrar de préstamos"
+
